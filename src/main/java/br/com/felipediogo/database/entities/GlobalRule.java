@@ -1,30 +1,23 @@
 package br.com.felipediogo.database.entities;
 
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name = "rules")
-public class Rule {
-
-    @Nullable
-    private String client;
+@Table(name = "GLOBAL_RULES")
+public class GlobalRule {	
 
     @NonNull
     private String regex;
 
-    public String getClient() {
-        return client;
-    }
-
     public String getRegex() {
         return regex;
-    }
-
-    public void setClient(String client) {
-        this.client = client;
     }
 
     public void setRegex(String regex) {
@@ -43,5 +36,4 @@ public class Rule {
     public void setId(long id) {
         this.id = id;
     }
-
 }
