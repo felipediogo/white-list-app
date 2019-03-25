@@ -12,7 +12,7 @@ public class RuleConverter {
 		InsertionDto dto = new InsertionDto();
 		dto.setClient(rule.getClient());
 		dto.setRegex(rule.getRegex());
-		return new InsertionDto();
+		return dto;
 	}
 	
 	public Rule toEntity(InsertionDto dto) {

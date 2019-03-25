@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,10 +30,21 @@ public class Insertion {
     @Autowired
     RuleService ruleService;
 
-    @PostMapping({ "/insert" })
-    public void insertRegexToQueue(@RequestBody InsertionDto input) {
+    @PostMapping({ "/insert/rule" })
+    public void insertRule(@RequestBody InsertionDto input) {
         log.info(input.toString());
         ruleService.addRule(input);
-//        amqpTemplate.convertAndSend(exchange, INSERTION_QUEUE, input);
+    }
+    
+    @PostMapping({ "/insert/global-rule" })
+    public void insertGlobalRule(@RequestBody InsertionDto input) {
+        log.info(input.toString());
+        ruleService.addGlobalRule(input);
+    }
+    
+    @GetMapping({ "/rules" })
+    public void getAllRules() {
+    	log.info("Buscando todas as rules");
+    	ruleService.getAllRules();
     }
 }
