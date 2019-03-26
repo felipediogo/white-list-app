@@ -6,7 +6,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "rules")
+@Table(name = "RULES")
 public class Rule {
 
     @Nullable

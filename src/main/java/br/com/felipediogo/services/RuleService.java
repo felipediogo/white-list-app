@@ -2,7 +2,11 @@ package br.com.felipediogo.services;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import br.com.felipediogo.database.entities.Rule;
+import org.apache.commons.collections4.IteratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +22,6 @@ import br.com.felipediogo.dtos.InsertionDto;
 
 @Component
 public class RuleService {
-	
-	private static final Logger log = LoggerFactory.getLogger(RuleService.class);
 	
 	@Autowired
 	GlobalRuleRepository globalRuleRepository;
@@ -44,16 +46,37 @@ public class RuleService {
 	public void addRule(InsertionDto input) {
 		if (StringUtils.isEmpty(input.getClient())) {
 			addGlobalRule(input);
+		} else {
+			ruleRepository.save(ruleConverter.toEntity(input));
 		}
-		ruleRepository.save(ruleConverter.toEntity(input));
 	}
 	
 	public void addGlobalRule(InsertionDto input) {
 		globalRuleRepository.save(globalRuleConverter.toEntity(input));
 	}
-	
-	public void getAllRules() {
-		 List<Iterable<? extends GlobalRule>> rules = Arrays.asList(ruleRepository.findAll(), globalRuleRepository.findAll());
-		 rules.stream().forEach(t -> log.info("rule -> {}", t.toString()));
+
+	private List<InsertionDto> getRules(String client) {
+		List<InsertionDto> rules = IteratorUtils
+				.toList(ruleRepository.findByClient(client).iterator())
+				.stream()
+				.map(ruleConverter::toDTO)
+				.collect(Collectors.toList());
+		return rules;
+	}
+
+	private List<InsertionDto> getGlobalRules() {
+		List<InsertionDto> globalRules = IteratorUtils
+				.toList(globalRuleRepository.findAll().iterator())
+				.stream()
+				.map(globalRuleConverter::toDTO)
+				.collect(Collectors.toList());
+		return globalRules;
+	}
+
+	public List<InsertionDto> getAllRules(String client) {
+		return Stream.concat(
+				getRules(client).stream(),
+				getGlobalRules().stream()
+		).collect(Collectors.toList());
 	}
 }

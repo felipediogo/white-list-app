@@ -18,7 +18,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class WhiteListAppApplication implements CommandLineRunner {
 
 	private static final Logger log = LoggerFactory.getLogger(WhiteListAppApplication.class);
-	
+
+	private static final String CREATE_TABLE_RULE_SCRIPT = "CREATE TABLE IF NOT EXISTS rules (" +
+			"id INT NOT NULL AUTO_INCREMENT," +
+			"client VARCHAR(128) NOT NULL," +
+			"regex VARCHAR(128) NOT NULL," +
+			"PRIMARY KEY (`id`))";
+
+	private static final String CREATE_TABLE_GLOBAL_RULE_SCRIPT = "CREATE TABLE IF NOT EXISTS global_rules (" +
+			"id INT NOT NULL AUTO_INCREMENT," +
+			"regex VARCHAR(128) NOT NULL," +
+			"PRIMARY KEY (`id`))";
+
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
@@ -27,19 +38,12 @@ public class WhiteListAppApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		String createRulesTable = "CREATE TABLE IF NOT EXISTS rules ( "
-				+ "id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT, " + "client VARCHAR(128) NULL, "
-				+ "regex VARCHAR(128) NOT NULL, CREATED_AT DATETIME DEFAULT CURRENT_TIMESTAMP, "
-				+ "PRIMARY KEY (`id`)) ";
-		String createGlobalRulesTable = "CREATE TABLE IF NOT EXISTS global_rules ( "
-				+ "id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT, "
-				+ "regex VARCHAR(128) NOT NULL, CREATED_AT DATETIME DEFAULT CURRENT_TIMESTAMP, " + "PRIMARY KEY (`id`)) ";
+	public void run(String... args) {
 		try {
-			jdbcTemplate.execute(createRulesTable);
-			jdbcTemplate.execute(createGlobalRulesTable);
-			log.info("Tables created");
+			log.info("Running scripts to initialize database");
+			jdbcTemplate.execute(CREATE_TABLE_RULE_SCRIPT);
+			jdbcTemplate.execute(CREATE_TABLE_GLOBAL_RULE_SCRIPT);
+			log.info("Database initialized");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
