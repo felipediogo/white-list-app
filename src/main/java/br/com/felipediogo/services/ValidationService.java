@@ -4,7 +4,6 @@ import br.com.felipediogo.converters.ResponseConverter;
 import br.com.felipediogo.dtos.InsertionDto;
 import br.com.felipediogo.dtos.ResponseDto;
 import br.com.felipediogo.dtos.ValidationDto;
-import br.com.felipediogo.messagequeue.listeners.InsertionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Component
 public class ValidationService {
@@ -37,8 +35,8 @@ public class ValidationService {
     }
 
     public static void main(String[] args) {
-        String input = "a";
-        System.out.print(Pattern.matches("[abc]", input));
+        String input = "(!*&@#";
+        System.out.print(Pattern.matches("[^a-z^A-Z^0-9\\^_]+", input));
     }
 
     public boolean match(String regex, String url) {

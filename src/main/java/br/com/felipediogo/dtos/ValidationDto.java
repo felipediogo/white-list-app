@@ -1,5 +1,7 @@
 package br.com.felipediogo.dtos;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 import java.io.Serializable;
 
 public class ValidationDto implements Serializable {
@@ -29,5 +31,20 @@ public class ValidationDto implements Serializable {
 
     public void setCorrelationId(int correlationId) {
         this.correlationId = correlationId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ValidationDto validation = (ValidationDto) o;
+
+        return new EqualsBuilder()
+                .append(url, validation.url)
+                .append(client, validation.client)
+                .append(correlationId, validation.correlationId)
+                .isEquals();
     }
 }

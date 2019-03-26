@@ -1,5 +1,6 @@
 package br.com.felipediogo.database.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -42,6 +43,21 @@ public class Rule {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Rule rule = (Rule) o;
+
+        return new EqualsBuilder()
+                .append(id, rule.id)
+                .append(regex, rule.regex)
+                .append(client, rule.client)
+                .isEquals();
     }
 
 }

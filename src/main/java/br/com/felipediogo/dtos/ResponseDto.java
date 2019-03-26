@@ -1,5 +1,7 @@
 package br.com.felipediogo.dtos;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 import java.io.Serializable;
 
 public class ResponseDto implements Serializable {
@@ -30,4 +32,20 @@ public class ResponseDto implements Serializable {
     public void setCorrelationId(int correlationId) {
         this.correlationId = correlationId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ResponseDto response = (ResponseDto) o;
+
+        return new EqualsBuilder()
+                .append(regex, response.regex)
+                .append(match, response.match)
+                .append(correlationId, response.correlationId)
+                .isEquals();
+    }
+
 }

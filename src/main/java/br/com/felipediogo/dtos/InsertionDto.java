@@ -1,5 +1,6 @@
 package br.com.felipediogo.dtos;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.lang.Nullable;
 
 import java.io.Serializable;
@@ -27,10 +28,16 @@ public class InsertionDto implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "client -  " +
-                client +
-                "regex -  " +
-                regex;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InsertionDto rule = (InsertionDto) o;
+
+        return new EqualsBuilder()
+                .append(regex, rule.regex)
+                .append(client, rule.client)
+                .isEquals();
     }
 }

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.lang.NonNull;
 
 @Entity
@@ -35,5 +36,19 @@ public class GlobalRule {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GlobalRule globalRule = (GlobalRule) o;
+
+        return new EqualsBuilder()
+                .append(id, globalRule.id)
+                .append(regex, globalRule.regex)
+                .isEquals();
     }
 }
