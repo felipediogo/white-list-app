@@ -14,8 +14,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidationListener {
-    private static final Logger log = LoggerFactory.getLogger(ValidationListener.class);
-
     @Value("${RESPONSE_ROUTING_KEY}")
     String responseQueue;
 
@@ -33,8 +31,7 @@ public class ValidationListener {
 
 
     @RabbitListener(queues = "${VALIDATION_QUEUE}", containerFactory = "rabbitListenerContainerFactory")
-    public void recievedMessage(@Payload ValidationDto input) {
-        log.debug("Received message -> {}", input.toString());
+    public void listener(@Payload ValidationDto input) {
         ResponseDto response = validationService.findWhiteList(input);
         amqpTemplate.convertAndSend(responseQueue, response);
     }

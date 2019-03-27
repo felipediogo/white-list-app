@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class InsertionListener {
 
-    private static final Logger log = LoggerFactory.getLogger(InsertionListener.class);
-
     @Autowired
     RuleService ruleService;
     
@@ -26,8 +24,7 @@ public class InsertionListener {
 
 
 	@RabbitListener(queues = "${INSERTION_QUEUE}", containerFactory = "rabbitListenerContainerFactory")
-    public void recievedMessage(@Payload InsertionDto input) {
-        log.debug("Received message -> {}", input.toString());
+    public void listener(@Payload InsertionDto input) {
         ruleService.addRule(input);
     }
 }

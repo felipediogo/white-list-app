@@ -1,24 +1,18 @@
 package br.com.felipediogo.services;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import br.com.felipediogo.database.entities.Rule;
+import br.com.felipediogo.converters.GlobalRuleConverter;
+import br.com.felipediogo.converters.RuleConverter;
+import br.com.felipediogo.database.repositories.GlobalRuleRepository;
+import br.com.felipediogo.database.repositories.RuleRepository;
+import br.com.felipediogo.dtos.InsertionDto;
 import org.apache.commons.collections4.IteratorUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import br.com.felipediogo.converters.GlobalRuleConverter;
-import br.com.felipediogo.converters.RuleConverter;
-import br.com.felipediogo.database.entities.GlobalRule;
-import br.com.felipediogo.database.repositories.GlobalRuleRepository;
-import br.com.felipediogo.database.repositories.RuleRepository;
-import br.com.felipediogo.dtos.InsertionDto;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class RuleService {

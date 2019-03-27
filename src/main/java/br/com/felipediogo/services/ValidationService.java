@@ -22,17 +22,9 @@ public class ValidationService {
     @Autowired
     ResponseConverter responseConverter;
 
-    private static final Logger log = LoggerFactory.getLogger(ValidationService.class);
-
-
     public ResponseDto findWhiteList(ValidationDto validation) {
         List<InsertionDto> rules = ruleService.getAllRules(validation.getClient());
-        rules.forEach(item -> log.info("{} - {}", item.getRegex(), item.getClient()));
-        AtomicInteger i = new AtomicInteger();
-        return rules.stream().parallel().filter(item -> {
-                    log.info("matching -> {} - {}", i.getAndIncrement(), item.getRegex());
-                    return match(item.getRegex(), validation.getUrl());
-                })
+        return rules.stream().parallel().filter(item -> match(item.getRegex(), validation.getUrl()))
                 .findAny().map(item -> responseConverter.convertResponse(item, true, validation.getCorrelationId()))
                 .orElse(responseConverter.convertResponse(new InsertionDto(), false, validation.getCorrelationId()));
     }
