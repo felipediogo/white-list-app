@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name = "GLOBAL_RULES")
+@Table(name = "global_rules")
 public class GlobalRule {	
 
     @NonNull
