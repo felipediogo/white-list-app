@@ -19,6 +19,11 @@ public class ValidationService {
     @Autowired
     ResponseConverter responseConverter;
 
+    public ValidationService(RuleService ruleService, ResponseConverter responseConverter) {
+        this.ruleService = ruleService;
+        this.responseConverter = responseConverter;
+    }
+
     public ResponseDto findWhiteList(ValidationDto validation) {
         List<InsertionDto> rules = ruleService.getAllRules(validation.getClient());
         return rules.stream().parallel().filter(item -> match(item.getRegex(), validation.getUrl()))

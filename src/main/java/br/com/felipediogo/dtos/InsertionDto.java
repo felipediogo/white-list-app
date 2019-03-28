@@ -40,4 +40,13 @@ public class InsertionDto implements Serializable {
                 .append(client, rule.client)
                 .isEquals();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("InsertionDto{");
+        sb.append("client='").append(client).append('\'');
+        sb.append(", regex='").append(regex).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

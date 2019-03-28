@@ -31,10 +31,12 @@ public class RuleService {
 	
 	public RuleService(GlobalRuleRepository globalRuleRepository,
 			RuleRepository ruleRepository,
-			RuleConverter converter) {
+			RuleConverter converter,
+		   	GlobalRuleConverter globalRuleConverter) {
 		this.globalRuleRepository = globalRuleRepository;
 		this.ruleRepository = ruleRepository;
 		this.ruleConverter = converter;
+		this.globalRuleConverter = globalRuleConverter;
 	}
 	
 	public void addRule(InsertionDto input) {

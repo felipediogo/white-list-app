@@ -46,6 +46,16 @@ public class ResponseDto implements Serializable {
                 .append(match, response.match)
                 .append(correlationId, response.correlationId)
                 .isEquals();
+
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ResponseDto{");
+        sb.append("correlationId='").append(correlationId).append('\'');
+        sb.append(", regex='").append(regex).append('\'');
+        sb.append(", match='").append(match).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
