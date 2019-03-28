@@ -1,9 +1,8 @@
 package br.com.felipediogo.converters;
 
-import org.springframework.stereotype.Component;
-
 import br.com.felipediogo.database.entities.Rule;
 import br.com.felipediogo.dtos.InsertionDto;
+import org.springframework.stereotype.Component;
 
 @Component
 public class RuleConverter {

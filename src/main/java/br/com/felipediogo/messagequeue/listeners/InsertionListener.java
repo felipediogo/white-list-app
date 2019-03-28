@@ -2,9 +2,6 @@ package br.com.felipediogo.messagequeue.listeners;
 
 import br.com.felipediogo.dtos.InsertionDto;
 import br.com.felipediogo.services.RuleService;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;

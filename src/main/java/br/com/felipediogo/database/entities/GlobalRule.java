@@ -1,14 +1,9 @@
 package br.com.felipediogo.database.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.lang.NonNull;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "global_rules")

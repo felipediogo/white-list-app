@@ -1,9 +1,7 @@
 package br.com.felipediogo.converters;
 
-import br.com.felipediogo.data.GlobalRuleData;
 import br.com.felipediogo.data.InsertionDtoData;
 import br.com.felipediogo.data.RuleData;
-import br.com.felipediogo.database.entities.GlobalRule;
 import br.com.felipediogo.database.entities.Rule;
 import br.com.felipediogo.dtos.InsertionDto;
 import org.junit.Before;

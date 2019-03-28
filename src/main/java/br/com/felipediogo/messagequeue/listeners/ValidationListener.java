@@ -3,8 +3,6 @@ package br.com.felipediogo.messagequeue.listeners;
 import br.com.felipediogo.dtos.ResponseDto;
 import br.com.felipediogo.dtos.ValidationDto;
 import br.com.felipediogo.services.ValidationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
