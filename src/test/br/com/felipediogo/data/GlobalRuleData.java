@@ -19,7 +19,7 @@ public class GlobalRuleData {
         return globalRule;
     }
 
-    public static GlobalRule globalRuleData2() {
+    private static GlobalRule globalRuleData2() {
         GlobalRule globalRule = new GlobalRule();
         globalRule.setRegex(REGEX_02);
         globalRule.setId(1L);

@@ -6,7 +6,7 @@ import static br.com.felipediogo.data.RuleData.REGEX_01;
 
 public class ResponseData {
     public static final Boolean MATCH_01 = false;
-    public static final Boolean MATCH_02 = true;
+    private static final Boolean MATCH_02 = true;
     public static final int CORRELATION_ID_01 = 123456;
 
     public static ResponseDto responseDtoData1() {

@@ -15,7 +15,7 @@ public class InsertionDtoData {
         return input;
     }
 
-    public static InsertionDto insertionInputData2() {
+    private static InsertionDto insertionInputData2() {
         InsertionDto input = new InsertionDto();
         input.setRegex(REGEX_02);
         input.setClient(CLIENT_01);
@@ -28,7 +28,7 @@ public class InsertionDtoData {
         return input;
     }
 
-    public static InsertionDto insertionInputGlobalData2() {
+    private static InsertionDto insertionInputGlobalData2() {
         InsertionDto input = new InsertionDto();
         input.setRegex(REGEX_02);
         return input;
