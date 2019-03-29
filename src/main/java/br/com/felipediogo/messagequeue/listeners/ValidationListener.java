@@ -5,7 +5,6 @@ import br.com.felipediogo.dtos.ValidationDto;
 import br.com.felipediogo.services.ValidationService;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
@@ -15,15 +14,13 @@ public class ValidationListener {
     @Value("${RESPONSE_ROUTING_KEY}")
     String responseQueue;
 
-    @Autowired
-    ValidationService validationService;
+    private ValidationService validationService;
 
-    @Autowired
-    AmqpTemplate amqpTemplate;
+    private AmqpTemplate amqpTemplate;
 
-    public ValidationListener(ValidationService validationService) {
-        super();
+    public ValidationListener(ValidationService validationService, AmqpTemplate amqpTemplate) {
         this.validationService= validationService;
+        this.amqpTemplate = amqpTemplate;
     }
 
 

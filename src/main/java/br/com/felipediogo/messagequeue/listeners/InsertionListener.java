@@ -10,11 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class InsertionListener {
 
-    @Autowired
-    RuleService ruleService;
+    private RuleService ruleService;
     
     public InsertionListener(RuleService ruleService) {
-		super();
 		this.ruleService = ruleService;
 	}
 

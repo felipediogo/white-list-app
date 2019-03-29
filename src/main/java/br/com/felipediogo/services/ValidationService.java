@@ -4,7 +4,6 @@ import br.com.felipediogo.converters.ResponseConverter;
 import br.com.felipediogo.dtos.InsertionDto;
 import br.com.felipediogo.dtos.ResponseDto;
 import br.com.felipediogo.dtos.ValidationDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,11 +12,9 @@ import java.util.regex.Pattern;
 @Component
 public class ValidationService {
 
-    @Autowired
-    RuleService ruleService;
+    private RuleService ruleService;
 
-    @Autowired
-    ResponseConverter responseConverter;
+    private ResponseConverter responseConverter;
 
     public ValidationService(RuleService ruleService, ResponseConverter responseConverter) {
         this.ruleService = ruleService;
@@ -31,7 +28,7 @@ public class ValidationService {
                 .orElse(responseConverter.convertResponse(new InsertionDto(), false, validation.getCorrelationId()));
     }
 
-    public boolean match(String regex, String url) {
+    private boolean match(String regex, String url) {
         return Pattern.matches(regex, url);
     }
 }

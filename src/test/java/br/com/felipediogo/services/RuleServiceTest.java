@@ -51,21 +51,21 @@ public class RuleServiceTest {
 
     @Test
     public void shouldTestAddGlobalRule() {
-        ruleService.addGlobalRule(insertionInputGlobalData1());
+        ruleService.addRule(insertionInputGlobalData1());
         verify(globalRuleRepository).save(globalRuleData1());
     }
 
     @Test
     public void shouldGetAllRules() {
-        whenDatabaseReturnsRules(CLIENT_01);
+        whenDatabaseReturnsRules();
         whenDatabaseReturnsGlobalRules();
 
         List<InsertionDto> dtos = ruleService.getAllRules(CLIENT_01);
         assertThat(dtos, is(dtos()));
     }
 
-    private void whenDatabaseReturnsRules(String client) {
-        when(ruleRepository.findByClient(client)).thenReturn(rules());
+    private void whenDatabaseReturnsRules() {
+        when(ruleRepository.findByClient(br.com.felipediogo.data.RuleData.CLIENT_01)).thenReturn(rules());
     }
 
     private void whenDatabaseReturnsGlobalRules() {
